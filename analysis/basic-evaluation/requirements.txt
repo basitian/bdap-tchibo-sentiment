@@ -1,0 +1,14 @@
+# Streamlit
+streamlit
+
+spacy
+spacy-lookups-data
+nltk
+
+SQLAlchemy
+psycopg2-binary
+
+pandas
+numpy
+altair
+wordcloud

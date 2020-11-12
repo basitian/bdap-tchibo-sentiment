@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+    database:
+        build:
+            context: database
+            dockerfile: Dockerfile
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: password
+    
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8081:8080
+        depends_on:
+            - database
+    
+    #otto-scraper:
+     #   build:
+      #      context: scraping/otto_de
+       #     dockerfile: Dockerfile
+       # depends_on:
+        #    - database
+        #command: [ "./wait-for-it.sh", "database:5432",  "--", "python3", "./start-spider.py" ]
+    
+    basic-evaluation-webapp:
+        build:
+            context: analysis/basic-evaluation
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - 8501:8501
+        depends_on: 
+            - database
