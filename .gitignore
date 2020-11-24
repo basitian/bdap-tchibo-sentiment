@@ -1,2 +1,4 @@
 /analysis/bert-as-service/
 .DS_Store
+__pycache__/
+/scraping/otto_de/logs/
