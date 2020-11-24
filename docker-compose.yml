@@ -21,9 +21,12 @@ services:
         build:
             context: scraping/otto_de
             dockerfile: Dockerfile
+        restart: always
         depends_on:
             - database
-        command: [ "./wait-for-it.sh", "database:5432",  "--", "python3", "./start-spider.py" ]
+        ports:
+            - 9080:9080
+        command: [ "./wait-for-it.sh", "database:5432",  "--", "scrapyrt", "-i", "0.0.0.0"]
     
     basic-evaluation-webapp:
         build:
