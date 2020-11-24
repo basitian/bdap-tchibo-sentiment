@@ -99,6 +99,7 @@ def get_product_names(title, reviews):
 def create_charts(product_records, product_title):
     st.subheader('Statistics for "{}":'.format(product_title))
 
+    # Verteilung der Ratings (1-5 Sterne)
     st.write('Rating Distribution (mean: {:.2f})'.format(np.mean(product_records['Rating'])))
     product_ratings = pd.DataFrame.from_records(Counter(product_records['Rating']).most_common(), columns=['Rating', 'Count'])
     chart1 = alt.Chart(product_ratings).mark_bar().encode(
@@ -109,6 +110,7 @@ def create_charts(product_records, product_title):
     )
     st.altair_chart(chart1, use_container_width=True)
 
+    # Verteilung der Textlänge (Anzahl Wörter je Text)
     st.write('Review Text Length Distribution (mean: {:.2f})'.format(np.mean(product_records['TEXT_LENGTH'])))
     chart2 = alt.Chart(product_records).mark_bar().encode(
         alt.X('TEXT_LENGTH:Q', bin=True, title='Text Length'),
@@ -156,6 +158,7 @@ def create_charts(product_records, product_title):
     ax.axis("off")
     st.pyplot(fig)
 
+    # Häufigste Wörter nach Anzahl Auftreten
     product_all_text = ' '.join(product_records['REVIEW_LEMMATIZED'])
     product_common_words = pd.DataFrame.from_records(Counter(product_all_text.split()).most_common(20), columns=['Words', 'Count'])
     st.write('Most Common Words')
@@ -167,7 +170,7 @@ def create_charts(product_records, product_title):
     )
     st.altair_chart(chart4, use_container_width=True)
 
-
+    # Häufigste Nomen nach Anzahl Auftreten
     most_common_nouns = pd.DataFrame.from_records(Counter(get_nouns(product_records)).most_common(15), columns=['Words', 'Count'])
     st.write('Most Common Nouns')
     chart5 = alt.Chart(most_common_nouns).mark_bar().encode(
