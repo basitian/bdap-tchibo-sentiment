@@ -64,3 +64,5 @@ class SavePipeline:
                     raise DropItem(f"Review {item['SourceReviewId']} from otto.de already exists")
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
+        finally:
+            return item

@@ -37,3 +37,13 @@ services:
             - 8501:8501
         depends_on: 
             - database
+
+    scraping-admin:
+        build:
+            context: scraping/scraping-admin
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - 8502:8501
+        depends_on: 
+            - database
