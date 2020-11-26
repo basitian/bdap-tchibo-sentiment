@@ -88,7 +88,7 @@ def get_nouns(data):
 def process_reviews(reviews, additional_stopwords = None):
     reviews['REVIEW'] = reviews['ReviewTitle'] + '. ' + reviews['ReviewText']
     reviews['REVIEW_PROCESSED'] = clean_text(reviews['REVIEW'], additional_stopwords)
-    reviews['TEXT_LENGTH'] = reviews['REVIEW_PROCESSED'].apply(lambda text: len(text))
+    reviews['TEXT_LENGTH'] = reviews['REVIEW'].apply(lambda text: len(text.split()))
     reviews['REVIEW_LEMMATIZED'] = reviews['REVIEW_PROCESSED'].apply(lemmatize)
     return reviews
 
