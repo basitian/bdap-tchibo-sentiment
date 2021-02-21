@@ -50,12 +50,12 @@ if product_name != '':
     if uploaded_file is not None:
         lexicon = createLexiconFromFile(uploaded_file)
         st.write('Created Lexicon with {} entries from uploaded file.'.format(len(lexicon.entries)))
-        
-    analyzing_state = st.text("Analyzing... This might take some time")
-    model = get_nlp_model()
-    analyzer = SentimentAnalyzer(lexicon, model)
-    analyzed = analyzer.analyzeReviews(reviews)
-    analyzing_state.text("Analyzing complete.")
-    st.write(analyzed)
+
+        analyzing_state = st.text("Analyzing... This might take some time")
+        model = get_nlp_model()
+        analyzer = SentimentAnalyzer(lexicon, model)
+        analyzed = analyzer.analyzeReviews(reviews)
+        analyzing_state.text("Analyzing complete.")
+        st.write(analyzed)
 
 
