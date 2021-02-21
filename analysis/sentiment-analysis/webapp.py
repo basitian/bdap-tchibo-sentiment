@@ -45,6 +45,12 @@ product_name = st.text_input("Product name")
 if product_name != '':
     reviews = get_reviews_for_product(product_name).copy()
     st.write("Found {} reviews for {}".format(len(reviews), product_name))
+
+    uploaded_file = st.file_uploader('Select lexicon file as CSV', type=['csv'], )
+    if uploaded_file is not None:
+        lexicon = createLexiconFromFile(uploaded_file)
+        st.write('Created Lexicon with {} entries from uploaded file.'.format(len(lexicon.entries)))
+        
     analyzing_state = st.text("Analyzing... This might take some time")
     model = get_nlp_model()
     analyzer = SentimentAnalyzer(lexicon, model)
@@ -52,7 +58,4 @@ if product_name != '':
     analyzing_state.text("Analyzing complete.")
     st.write(analyzed)
 
-    uploaded_file = st.file_uploader('Select lexicon file as CSV', type=['csv'], )
-    if uploaded_file is not None:
-        lexicon = createLexiconFromFile(uploaded_file)
-        st.write('Created Lexicon with {} entries from uploaded file.'.format(len(lexicon.entries)))
+
