@@ -10,10 +10,10 @@ Folgende Services sind aktuell Teil dieses Projekts:
 
 Vorraussetzung zum Starten des Systems ist [Docker Desktop](https://www.docker.com/get-started) in der Version `2.4.0.0` oder höher, welches auf dem lokalen Computer installiert werden muss.
 
-Die Services können über den Kommandozeilenbefehl `docker-compose up -d` gestartet werden, wenn man sich im Verzeichnis `bdap-tchibo-sentiment-master` befindet. Das erstmalige Starten des Systems installiert alle benötigten Komponenten und Services. Dies kann bis zu 15 Minuten dauern und erfordert eine Internetverbindung. Nach dieser initialen Installation erfolgt ein erneutes Hochfahren des Systems innerhalb von ca. 10 Sekunden.
-Ein Herunterfahren des Systems kann über den Kommandozeilenbefehl `docker-compose stop`erfolgen, wenn man sich im Verzeichnis `bdap-tchibo-sentiment-master` befindet.
+Die erstmalige Installation erfolgt über den Kommandozeilenbefehl `docker-compose build --no-cache --parallel` im Verzeichnis `bdap-tchibo-sentiment-master`. Ist die Installation abgeschlossen, kann das System künftig über den Befehl `docker-compose up -d` gestartet werden, wenn man sich im Verzeichnis `bdap-tchibo-sentiment-master` befindet. Das erstmalige Starten des Systems installiert alle benötigten Komponenten und Services. Dies kann bis zu 10 Minuten dauern und erfordert eine Internetverbindung. Nach dieser initialen Installation erfolgt ein erneutes Hochfahren des Systems innerhalb von ca. 10 Sekunden.
+Ein Herunterfahren des Systems kann über den Kommandozeilenbefehl `docker-compose stop` erfolgen, wenn man sich im Verzeichnis `bdap-tchibo-sentiment-master` befindet.
 
-Wurden Änderungen an einer der Komponenten vorgenommen, müssen die Docker Images und Container neu erzeugt werden. Dies kann über den Befehl `docker-compose up --build` erfolgen.
+Wurden Änderungen an einer der Komponenten vorgenommen, müssen die Docker Images und Container neu erzeugt werden. Dies kann über den Befehl `docker-compose build --no-cache --parallel` erfolgen.
 
 Nach erfolgreichem Start der Komponenten, ist die Web Applikation für eine explorative Datenanalyse unter `localhost:8501` erreichbar.
 
