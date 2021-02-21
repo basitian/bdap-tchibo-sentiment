@@ -13,5 +13,5 @@ CREATE TABLE "public"."Reviews" (
     "ReviewText" text NOT NULL
 ) WITH (oids = false);
 
-COPY "Reviews" ("Rating", "ReviewTitle", "ReviewText", "CreatedAt", "ProductName", "Source") FROM '/docker-entrypoint-initdb.d/tchibo_reviews.csv' DELIMITER ',' CSV HEADER;
-COPY "Reviews" ("CreatedAt", "ProductName", "Rating", "ReviewText", "ReviewTitle", "Source", "SourceReviewId") FROM '/docker-entrypoint-initdb.d/mediamarkt_reviews.csv' DELIMITER ';' CSV HEADER;
+
+COPY "Reviews" ("ProductName", "ReviewId", "Rating", "SourceReviewId", "CreatedAt", "ReviewTitle", "Source", "ReviewText") FROM '/docker-entrypoint-initdb.d/reviews.csv' DELIMITER ';' CSV HEADER;

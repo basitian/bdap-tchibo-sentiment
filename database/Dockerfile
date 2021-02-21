@@ -7,11 +7,9 @@ FROM postgres:13.0
  
 # copy the initial script into dir
 COPY init/setup-database.sql /docker-entrypoint-initdb.d
-ADD https://www.dropbox.com/s/jol8eiz6vcrgq6s/tchibo_reviews.csv?dl=1 /docker-entrypoint-initdb.d/tchibo_reviews.csv
-ADD https://www.dropbox.com/s/5v00wd4aem7sd0t/mediamarkt_reviews.csv?dl=1 /docker-entrypoint-initdb.d/mediamarkt_reviews.csv
+ADD https://www.dropbox.com/s/qt1k5a4yiojopm5/all_coffemachine_reviews.csv?dl=1 /docker-entrypoint-initdb.d/reviews.csv
 
-RUN chmod +r /docker-entrypoint-initdb.d/tchibo_reviews.csv
-RUN chmod +r /docker-entrypoint-initdb.d/mediamarkt_reviews.csv 
+RUN chmod +r /docker-entrypoint-initdb.d/reviews.csv
  
 # set locale
 RUN localedef -i de_DE -c -f UTF-8 -A /usr/share/locale/locale.alias de_DE.UTF-8

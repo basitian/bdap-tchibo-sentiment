@@ -1,0 +1,11 @@
+# Streamlit
+streamlit == 0.69.2 
+
+spacy == 2.3.2
+spacy_sentiws == 0.0.6
+
+SQLAlchemy == 1.3.20 
+psycopg2-binary ==2.8.6 
+
+pandas == 1.1.2
+numpy == 1.19.2

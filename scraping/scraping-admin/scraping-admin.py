@@ -27,7 +27,7 @@ if st.button('Scrape Data'):
     if response['status'] == 'ok':
         df = pd.DataFrame(response['items'])
         count = response['stats']['item_scraped_count']
-        st.success('Done scraping {} items.'.format(count))
+        st.success('Done scraping {} items and writing new reviews to database'.format(count))
         st.write(df)
     else:
         st.error('Error scraping data')

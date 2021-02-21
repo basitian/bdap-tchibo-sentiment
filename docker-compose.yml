@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 services:
     database:
@@ -10,7 +10,7 @@ services:
             - 5432:5432
         environment:
             POSTGRES_PASSWORD: password
-    
+
     adminer:
         image: adminer
         restart: always
@@ -18,7 +18,7 @@ services:
             - 8081:8080
         depends_on:
             - database
-    
+
     otto-scraper:
         build:
             context: scraping/otto_de
@@ -28,8 +28,16 @@ services:
             - database
         ports:
             - 9080:9080
-        command: [ "./wait-for-it.sh", "database:5432",  "--", "scrapyrt", "-i", "0.0.0.0"]
-    
+        command:
+            [
+                './wait-for-it.sh',
+                'database:5432',
+                '--',
+                'scrapyrt',
+                '-i',
+                '0.0.0.0',
+            ]
+
     basic-evaluation-webapp:
         build:
             context: analysis/basic-evaluation
@@ -37,7 +45,17 @@ services:
         restart: always
         ports:
             - 8501:8501
-        depends_on: 
+        depends_on:
+            - database
+
+    analyse-webapp:
+        build:
+            context: analysis/sentiment-analysis
+            dockerfile: Dockerfile
+        restart: always
+        ports:
+            - 8503:8501
+        depends_on:
             - database
 
     scraping-admin:
@@ -47,5 +65,5 @@ services:
         restart: always
         ports:
             - 8502:8501
-        depends_on: 
+        depends_on:
             - database
